@@ -22,7 +22,7 @@ def admin_page():
 def show_admin_dashboard():
     st.subheader("Manage Polls")
 
-    # Add new poll
+    # new poll component
     with st.expander("Add New Poll"):
         new_question = st.text_input("Enter new poll question")
         new_options = st.text_area("Enter options (one per line)")
@@ -34,7 +34,7 @@ def show_admin_dashboard():
             else:
                 st.error("Please provide a question and at least two options.")
 
-    # List and manage existing polls
+    # poll management component
     st.subheader("Existing Polls")
     polls = get_all_polls()
     for poll in polls:
@@ -53,14 +53,14 @@ def show_admin_dashboard():
                 delete_poll(poll['id'])
                 st.rerun()
             
-            # Display poll results
+            # poll results component
             results = get_poll_results(poll['id'])
             if results:
                 st.write("Current Results:")
                 for result in results:
                     st.write(f"{result['option_text']}: {result['vote_count']} votes")
 
-    # Add export functionality
+    # export student data component
     st.subheader("Export Student Data")
     if st.button("Export Student Data as CSV"):
         students = get_all_students()

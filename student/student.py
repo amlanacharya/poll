@@ -51,7 +51,6 @@ def show_active_poll():
 
         if not st.session_state.voted:
             if options and isinstance(options, list) and len(options) > 0:
-                # Use custom CSS to ensure black text for radio buttons
                 st.markdown("""
                     <style>
                     .stRadio label {
@@ -68,20 +67,20 @@ def show_active_poll():
             else:
                 st.warning("No options available for this poll.")
         
-        # Create a placeholder for the results
+        # results placeholder
         results_placeholder = st.empty()
         
-        # Continuously update the results
+        # results update
         while True:
             results = get_poll_results(active_poll['id'])
             total_votes = sum(result['vote_count'] for result in results)
             
-            # Prepare data for visualization
+            # poll graph data
             option_texts = [result['option_text'] for result in results]
             vote_counts = [result['vote_count'] for result in results]
             percentages = [(count / total_votes) * 100 if total_votes > 0 else 0 for count in vote_counts]
             
-            # Create bar chart
+            # poll graph
             fig = go.Figure(data=[
                 go.Bar(
                     x=percentages,
@@ -101,13 +100,13 @@ def show_active_poll():
                 margin=dict(l=0, r=0, t=30, b=0)
             )
             
-            # Update the results placeholder
+            # results update
             with results_placeholder.container():
                 st.subheader("Current Results")
                 st.plotly_chart(fig, use_container_width=True)
                 st.write(f"Total votes: {total_votes}")
             
-            # Wait for 5 seconds before updating again
+            # results update delay
             time.sleep(5)
     else:
         st.info("There is no active poll at the moment. Please check back later.")

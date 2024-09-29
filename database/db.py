@@ -13,7 +13,7 @@ def initialize_database():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # Create Students table
+    # Students table create
     cur.execute('''
     CREATE TABLE IF NOT EXISTS students (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +23,7 @@ def initialize_database():
     )
     ''')
 
-    # Create Polls table
+    # Polls table create    
     cur.execute('''
     CREATE TABLE IF NOT EXISTS polls (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +32,7 @@ def initialize_database():
     )
     ''')
 
-    # Create Options table
+    # Options table create  
     cur.execute('''
     CREATE TABLE IF NOT EXISTS options (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +42,7 @@ def initialize_database():
     )
     ''')
 
-    # Create Votes table
+    # Votes table create    
     cur.execute('''
     CREATE TABLE IF NOT EXISTS votes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

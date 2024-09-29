@@ -14,7 +14,6 @@ def main():
     
     st.title("Grip the Facts")
 
-    # Simple navigation
     page = st.sidebar.selectbox("Choose a page", ["Student", "Admin"])
 
     if page == "Student":
